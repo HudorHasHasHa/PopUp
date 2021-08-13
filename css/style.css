@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial;
+  z-index: 0;
+  padding: 0;
+}
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+  padding: 0;
+}
+
+.row {
+  padding: 0;
+  margin-left: 0;
+}
+
+button {
+  font-size: 2vw;
+  padding: 10px 30px;
+}
+
+.overlay {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 40%;
+  transition: 200ms ease-in-out;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 1vh;
+  z-index: 10;
+}
+
+.modal.is-active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal .description {
+  padding: 0;
+}
+
+.modal .description .product-header p {
+  font-size: 1.3vw;
+}
+
+.modal .description .size-buttons {
+  width: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding-bottom: 1px;
+}
+
+.modal .description .size-buttons button {
+  border: 1px solid gray;
+  border-radius: 6px;
+  background-color: white;
+  font-size: 1vw;
+  width: 26%;
+  padding: 8px 0;
+}
+
+.modal .description .size-buttons button.selected {
+  border: 2px solid blue;
+}
+
+.modal .description .color-dropdown-wrapper .color-dropdown {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 80%;
+}
+/*# sourceMappingURL=style.css.map */
