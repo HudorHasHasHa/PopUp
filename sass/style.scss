@@ -54,10 +54,19 @@ button{
   }
 
   .description{
-    padding: 0;
+    padding: 20px 0;
     .product-header p{
       font-size: 1.3vw;
     }
+
+    .product-price{
+      .price{
+        font-size: 1.4vw;
+        color: blue;
+        font-weight: bold;
+      }
+    }
+
     .size-buttons{
       width: 100%;
       display: flex;
@@ -83,14 +92,30 @@ button{
         width: 80%;
       }
     }
-  }
 
-  .product-availability{
-    .product-availability-icon{
-
-    }
-    .product-availability-text{
-      font-size: 1vw;
+    .product-availability{
+      justify-content: space-between;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      .product-availability-icon{
+        top: 0;
+        left: 0;
+        height:1vw;
+        display: block;
+        position: relative;
+        margin: 0;
+        background-position: center;
+      }
+      .product-availability-text-wrapper{
+        display: table;
+        p{
+          margin: 0;
+        }
+        .product-availability-text{
+          font-size: 1vw;
+        }
+      }
     }
   }
 }

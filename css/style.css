@@ -55,19 +55,23 @@ button {
 }
 
 .modal .description {
-  padding: 0;
+  padding: 20px 0;
 }
 
 .modal .description .product-header p {
   font-size: 1.3vw;
 }
 
+.modal .description .product-price .price {
+  font-size: 1.4vw;
+  color: blue;
+  font-weight: bold;
+}
+
 .modal .description .size-buttons {
   width: 100%;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
+  justify-content: space-between;
   padding-bottom: 1px;
 }
 
@@ -85,12 +89,37 @@ button {
 }
 
 .modal .description .color-dropdown-wrapper .color-dropdown {
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: space-around;
   width: 80%;
 }
 
-.modal .product-availability .product-availability-text {
+.modal .description .product-availability {
+  justify-content: space-between;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.modal .description .product-availability .product-availability-icon {
+  top: 0;
+  left: 0;
+  height: 1vw;
+  display: block;
+  position: relative;
+  margin: 0;
+  background-position: center;
+}
+
+.modal .description .product-availability .product-availability-text-wrapper {
+  display: table;
+}
+
+.modal .description .product-availability .product-availability-text-wrapper p {
+  margin: 0;
+}
+
+.modal .description .product-availability .product-availability-text-wrapper .product-availability-text {
   font-size: 1vw;
 }
+
 /*# sourceMappingURL=style.css.map */

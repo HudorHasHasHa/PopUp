@@ -16,9 +16,9 @@ export const productAvailability = (status) => {
   text.insertAdjacentHTML('beforeend', status);
 
   if(status == "Produkt dostępny"){
-  statusImg.setAttribute("style", `background: url("./images/tick.svg");background-repeat: no-repeat`);
+  statusImg.setAttribute("style", `background-image: url("./images/tick.svg");background-repeat: no-repeat`);
   }
-  // else if(status == "Produkt niedostępny"){
-  //   statusImg.setAttribute("style", "background-image: url("");background-repeat: no-repeat"); 
-  // }
+  else if(status == "Produkt niedostępny"){
+    statusImg.setAttribute("style", `background-image: url("./images/close.svg");background-repeat: no-repeat`); 
+  }
 };

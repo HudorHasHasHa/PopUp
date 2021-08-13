@@ -72,9 +72,11 @@ overlay.addEventListener('click', function (event) {
 
   console.log(sizeButtons);
   for (let i = 0; i < sizeButtons.length; i++) {
-    // By default first option's checked
+    // By default first option's checked // default options start
     sizeButtons[0].classList.add('selected');
     priceChanger(prices[0]);
+    productAvailability(status[0]);
+    // default options end
     sizeButtons[i].addEventListener("click", function (event) {
       event.preventDefault();
       sizeButtonsCleaner();
