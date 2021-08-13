@@ -43,7 +43,7 @@ button{
   top: 50%;
   left: 50%;
   width: 60%;
-  height: 40%;
+  height: 60%;
   transition: 200ms ease-in-out;
   transform: translate(-50%, -50%) scale(0);
   border-radius: 1vh;
@@ -61,7 +61,7 @@ button{
     .size-buttons{
       width: 100%;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
       padding-bottom: 1px;
       button{
         border: 1px solid gray;
@@ -82,6 +82,15 @@ button{
         justify-content: space-around;
         width: 80%;
       }
+    }
+  }
+
+  .product-availability{
+    .product-availability-icon{
+
+    }
+    .product-availability-text{
+      font-size: 1vw;
     }
   }
 }

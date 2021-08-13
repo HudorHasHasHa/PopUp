@@ -43,7 +43,7 @@ button {
   top: 50%;
   left: 50%;
   width: 60%;
-  height: 40%;
+  height: 60%;
   transition: 200ms ease-in-out;
   transform: translate(-50%, -50%) scale(0);
   border-radius: 1vh;
@@ -66,8 +66,8 @@ button {
   width: 100%;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
   padding-bottom: 1px;
 }
 
@@ -88,5 +88,9 @@ button {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   width: 80%;
+}
+
+.modal .product-availability .product-availability-text {
+  font-size: 1vw;
 }
 /*# sourceMappingURL=style.css.map */

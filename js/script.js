@@ -1,4 +1,10 @@
-import { mainButton, overlay, modal } from './selectors.js';
+import { priceChanger, productAvailability } from './utils.js';
+
+// selectors
+const mainButton = document.querySelector(".open-popup");
+const overlay = document.querySelector(".overlay");
+const modal = document.querySelector(".modal");
+
 // Alternatively we can load data using fetch instead of external axios package
 // Reading json file content
 const response = await axios.get("../xbox.json")
@@ -22,6 +28,7 @@ overlay.addEventListener('click', function (event) {
   overlay.classList.remove('is-active');
 });
 
+
 // SizeButtonsGenerator & events Start
 (function () {
   let sizeButtonTemplate = function (type, name) {
@@ -29,15 +36,21 @@ overlay.addEventListener('click', function (event) {
   }
 
   console.log(xbox.sizes.items)
-  let sizes = [];
-  let types = [];
+  let sizes = [], types = [], prices = [], status = [];
 
+  // For Loop for extracting data from json file to declared variables for easier use
   for (const item in xbox.sizes.items) {
     if (xbox.sizes.items[item].hasOwnProperty('name')) {
       sizes.push(xbox.sizes.items[item].name);
     }
     if (xbox.sizes.items[item].hasOwnProperty('type')) {
       types.push(xbox.sizes.items[item].type);
+    }
+    if (xbox.sizes.items[item].hasOwnProperty('price')) {
+      prices.push(xbox.sizes.items[item].price);
+    }
+    if (xbox.sizes.items[item].hasOwnProperty('status')) {
+      status.push(xbox.sizes.items[item].status);
     }
   }
 
@@ -61,23 +74,23 @@ overlay.addEventListener('click', function (event) {
   for (let i = 0; i < sizeButtons.length; i++) {
     // By default first option's checked
     sizeButtons[0].classList.add('selected');
+    priceChanger(prices[0]);
     sizeButtons[i].addEventListener("click", function (event) {
       event.preventDefault();
       sizeButtonsCleaner();
       sizeButtons[i].classList.add('selected');
+      priceChanger(prices[i]);
+      productAvailability(status[i]);
     });
   }
 })();
 // SizeButtonsGenerator & events Ends
 
-(function(){
-  const price = document.getElementById("price");
-  price.insertAdjacentHTML('beforebegin','5zł');
-})();
+
 
 
 // variant Dropdown selector Generator & events Start
-
+console.log(price);
 (function () {
   let dropdownColors = [];
   let dropdownId = [];
@@ -101,3 +114,4 @@ overlay.addEventListener('click', function (event) {
 
   document.querySelector(".color-dropdown").insertAdjacentHTML('beforeend', variantHtml);
 })();
+// variant Dropdown selector Generator & events Ends
