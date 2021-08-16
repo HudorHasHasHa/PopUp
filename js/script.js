@@ -5,8 +5,7 @@ const mainButton = document.querySelector(".open-popup");
 const overlay = document.querySelector(".overlay");
 const modal = document.querySelector(".modal");
 
-// Alternatively we can load data using fetch instead of external axios package
-// Reading json file content
+// Reading json file content START
 const response = await axios.get("../xbox.json")
   .catch(error => {
     console.log(error.response);
@@ -14,7 +13,18 @@ const response = await axios.get("../xbox.json")
 
 // Setting const variable content as json file response data
 const xbox = response.data;
+
+// Alternatively load data using fetch instead of axios package
+/*
+let xbox;
+await fetch("../xbox.json")
+.then(response => response.json())
+.then(data => {
+  return xbox = data;
+})
 console.log(xbox);
+*/
+// Reading json file content ENDS
 
 mainButton.addEventListener('click', function (event) {
   event.preventDefault();
