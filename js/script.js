@@ -4,6 +4,7 @@ import { priceChanger, productAvailability } from './utils.js';
 const mainButton = document.querySelector(".open-popup");
 const overlay = document.querySelector(".overlay");
 const modal = document.querySelector(".modal");
+const delivery = document.querySelector(".delivery-information");
 
 // Reading json file content START
 const response = await axios.get("../xbox.json")
@@ -41,12 +42,17 @@ overlay.addEventListener('click', function (event) {
 
 // SizeButtonsGenerator & events Start
 (function () {
+  // button values
+  let sizes = [], types = [], sizePrices = [], status = [];
+  // dropdown values
+  let dropdownPrices = [], dropdownImage = [], dropdownColors = [];
+  const dropdown = xbox.multiversions[0].items;
+
   let sizeButtonTemplate = function (type, name) {
     return `<button class="button-type-${type}" id="button-type-${type}">${name}</button>`;
   }
 
   console.log(xbox.sizes.items)
-  let sizes = [], types = [], prices = [], status = [];
 
   // For Loop for extracting data from json file to declared variables for easier use
   for (const item in xbox.sizes.items) {
@@ -57,13 +63,46 @@ overlay.addEventListener('click', function (event) {
       types.push(xbox.sizes.items[item].type);
     }
     if (xbox.sizes.items[item].hasOwnProperty('price')) {
-      prices.push(xbox.sizes.items[item].price);
+      sizePrices.push(xbox.sizes.items[item].price);
     }
     if (xbox.sizes.items[item].hasOwnProperty('status')) {
       status.push(xbox.sizes.items[item].status);
     }
   }
 
+  // DROPDOWN PRICE PART STARTS
+  for (const item in dropdown) {
+    console.log(dropdown[item]);
+    // statements to get dropdown options variables including priceDiff & img url//
+    if (dropdown[item].products[0].hasOwnProperty('price_difference')) {
+      dropdownPrices.push(dropdown[item].products[0].price_difference);
+    }
+    if (dropdown[item].products[0].hasOwnProperty('url')) {
+      dropdownImage.push(dropdown[item].products[0].url);
+    }
+    for (const key in dropdown[item].values) {
+      dropdownColors.push(dropdown[item].values[key].name);
+    }
+  }
+  // const dropdownObj = {
+  //   dropdownColors, dropdownPrices, dropdownImage
+  // }
+  // console.log(dropdownObj);
+
+  let dropdownSelector = document.getElementById("color-dropdown");
+  let selectedValue;
+  let selectedDropdownPrice = 0;
+  dropdownSelector.addEventListener('change', function () {
+    selectedValue = document.querySelector(".color-dropdown").value;
+    console.log(selectedValue);
+    for (let i = 0; i < dropdownColors.length; i++) {
+      if (dropdownColors[i] == selectedValue) {
+        console.log(dropdownPrices[i]);
+        selectedDropdownPrice = parseFloat(dropdownPrices[i]);
+      }
+    }
+  });
+  // DROPDOWN PRICE PART ENDS
   let buttonsHTML = '';
   for (let i = 0; i < sizes.length; i++) {
     buttonsHTML = buttonsHTML + sizeButtonTemplate(types[i], sizes[i]);
@@ -79,51 +118,64 @@ overlay.addEventListener('click', function (event) {
       sizeButtons[i].classList.remove('selected');
     }
   }
-
-  console.log(sizeButtons);
   for (let i = 0; i < sizeButtons.length; i++) {
     // By default first option's checked // default options start
     sizeButtons[0].classList.add('selected');
-    priceChanger(prices[0]);
+    
+    // console.log(sizeButtons.classList.contains(".selected"));
+    priceChanger(sizePrices[0], selectedDropdownPrice);
     productAvailability(status[0]);
     // default options end
     sizeButtons[i].addEventListener("click", function (event) {
       event.preventDefault();
       sizeButtonsCleaner();
       sizeButtons[i].classList.add('selected');
-      priceChanger(prices[i]);
+      priceChanger(sizePrices[i], parseFloat(selectedDropdownPrice));
       productAvailability(status[i]);
+    });
+    // dropdownSelector on change running priceChanger
+    dropdownSelector.addEventListener('change', function(){
+      if(sizeButtons[i].classList.contains("selected")){
+      priceChanger(sizePrices[i], parseFloat(selectedDropdownPrice));
+      }
     });
   }
 })();
 // SizeButtonsGenerator & events Ends
 
-
-
-
 // variant Dropdown selector Generator & events Start
 console.log(price);
 (function () {
   let dropdownColors = [];
-  let dropdownId = [];
   let variantHtml = '';
-  let variantTemplate = function (id, color) {
-    return `<option class="button-type-${id}" id="button-type-${id}">${color}</option>`;
+  let variantTemplate = function (color) {
+    return `<option value="${color}">${color}</option>`;
   }
-
   const items = xbox.multiversions[0].items;
 
   for (const item in items) {
+    // nested for in to access dropdown json values
     for (const key in items[item].values) {
       dropdownColors.push(items[item].values[key].name);
-      dropdownId.push(items[item].values[key].id);
     }
   }
+  // console.log(dropdownColors)
 
+  //Creating html from declared template by looping through 
   for (let i = 0; i < dropdownColors.length; i++) {
-    variantHtml = variantHtml + variantTemplate(dropdownId[i], dropdownColors[i]);
+    variantHtml = variantHtml + variantTemplate(dropdownColors[i]);
   }
 
   document.querySelector(".color-dropdown").insertAdjacentHTML('beforeend', variantHtml);
 })();
 // variant Dropdown selector Generator & events Ends
+
+// Delivery information
+(function(){
+  const isAvailable = document.querySelector(".product-availability-text");
+  console.log(isAvailable.innerHTML);
+
+  if(isAvailable.innerHTML === "Produkt dostępny"){
+    console.log('dostępny');
+  }
+})();

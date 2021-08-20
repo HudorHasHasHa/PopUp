@@ -15,7 +15,6 @@
 }
 
 button{
-  font-size: 2vw;
   padding: 10px 30px;
 }
 
@@ -38,12 +37,12 @@ button{
 }
 
 .modal {
+  font-size: 13px;
   background: white;
   position: fixed;
   top: 50%;
   left: 50%;
   width: 60%;
-  height: 60%;
   transition: 200ms ease-in-out;
   transform: translate(-50%, -50%) scale(0);
   border-radius: 1vh;
@@ -54,14 +53,12 @@ button{
   }
 
   .description{
-    padding: 20px 0;
-    .product-header p{
-      font-size: 1.3vw;
-    }
+    padding: 20px 10px;
+    // .product-header p{
+    // }
 
     .product-price{
       .price{
-        font-size: 1.4vw;
         color: blue;
         font-weight: bold;
       }
@@ -72,12 +69,13 @@ button{
       display: flex;
       justify-content: space-between;
       padding-bottom: 1px;
+      > * {
+        width: calc((100% / 3) - 2%);
+      }
       button{
         border: 1px solid gray;
         border-radius: 6px;
         background-color: white;
-        font-size: 1vw;
-        width: 26%;
         padding: 8px 0;
 
         &.selected{
@@ -91,9 +89,12 @@ button{
         border: 1px lightblue solid;
         border-radius: 5px;
         justify-content: space-around;
-        width: 80%;
+        width: 100%;
         padding: 3px 5px;
-        font-size: 1.4vw;
+        &:hover{
+          background-color: white;
+          border: 1px lightblue solid;
+        }
       }
     }
 
@@ -102,63 +103,98 @@ button{
       margin: 10px 0;
       display: flex;
       align-items: center;
+      > * {
+        height: 2em;
+      }
       .product-availability-icon{
+        height: 50%;
+        position: absolute;
+        margin: auto;
         top: 0;
         left: 0;
-        height:1vw;
+        right: 0;
+        bottom: 0;
         display: block;
-        position: relative;
-        margin: 0;
         background-position: center;
       }
       .product-availability-text-wrapper{
         display: table;
         p{
           margin: 0;
+          line-height: 2em;
         }
-        .product-availability-text{
-          font-size: 1vw;
+        // .product-availability-text{
+        // }
+      }
+    }
+
+    .delivery-information{
+      > * {
+        height: 2em;
+      }
+      margin: 10px 0;
+      
+      .delivery-icon-wrapper{
+        background: center center;
+        .delivery-icon{
+          height: 50%;
+          top: 0;
+          left: 0;
+          // height:1vw;
+          display: block;
+          position: absolute;
+          margin: auto;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-position: center;
         }
       }
     }
 
-    .quantity{
-      border: 1px solid lightgray;
-      border-radius: 5px;
-      height: 3vw;
-      vertical-align: middle;
-      padding: 0.5vw 0;
-      justify-content: space-between;
+    .bottom-section{
       display: flex;
+      justify-content: space-between;
+      .quantity{
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        // height: 3vw;
+        vertical-align: middle;
+        padding: 0.5vw 0;
+        justify-content: space-between;
+        display: flex;
 
-      .amount{
-        font-size: 1vw;
-        height:2vw;
-        text-align: center;
-        width: 60%;
-        border: none;
+        .amount{
+          // height:2vw;
+          text-align: center;
+          width: 60%;
+          border: none;
+        }
+        .btn-quantity{
+          color: black;
+          transition: all 0.3s;
+          display: inline-block;
+          text-decoration: none;
+          text-align: center;
+          vertical-align: top;
+          padding: 2px 0;
+          // line-height: 26px;
       }
-      .btn-quantity{
-        color: black;
-        transition: all 0.3s;
-        display: inline-block;
-        text-decoration: none;
-        text-align: center;
-        vertical-align: top;
-        padding: 2px 0;
-        height: 2vw;
-        line-height: 26px;
-        font-size: 10px;
-    }
-    }
+      }
+      .add-to-cart-button-wrapper{
+        display: flex;
+        justify-content: flex-end;
 
-    .add-to-cart-button{
-      border: 1px solid white;
-      border-radius: 6px;
-      background-color: blue;
-      width: 100%;
-      height: 100%;
-      font-size: 1vw;
+        .add-to-cart-button{
+          color: white;
+          border: none;
+          border-radius: 6px;
+          background-color: blue;
+          height: 100%;
+          padding: calc(0.5vw + 3px) 0;
+        }
+      }
     }
   }
 }
