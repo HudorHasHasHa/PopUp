@@ -50,7 +50,9 @@
             {
               "product_id": 7,
               "version_priority": "1",
-              "url": "\/pl\/products\/xbox-7.html",
+              "url": [
+                "./photos/xbox-szary-1.png"
+              ],
               "price_difference": "0.00"
             }
           ],
@@ -68,7 +70,10 @@
             {
               "product_id": 8,
               "version_priority": "2",
-              "url": "\/pl\/products\/xbox-4-slim-8.html",
+              "url": [
+                "./photos/xbox-czarny-1.png", 
+                "./photos/xbox-czarny-2.png" 
+              ],
               "price_difference": "-5.00"
             }
           ],
@@ -86,7 +91,11 @@
             {
               "product_id": 27,
               "version_priority": "2",
-              "url": "\/pl\/products\/xbox-4-slim-27.html",
+              "url": [
+                "./photos/xbox-bialy-1.png", 
+                "./photos/xbox-bialy-2.png",
+                "./photos/xbox-bialy-3.png" 
+              ],
               "price_difference": "-10.00"
             }
           ],

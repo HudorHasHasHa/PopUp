@@ -42,7 +42,7 @@ button {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 60%;
+  width: 100%;
   transition: 200ms ease-in-out;
   transform: translate(-50%, -50%) scale(0);
   border-radius: 1vh;
@@ -54,10 +54,11 @@ button {
 }
 
 .modal .description {
-  padding: 20px 10px;
+  padding: 20px 3px;
 }
 
 .modal .description .product-price .price {
+  transition: 200ms ease-in-out;
   color: blue;
   font-weight: bold;
 }
@@ -73,6 +74,7 @@ button {
 
 .modal .description .size-buttons > * {
   width: calc((100% / 3) - 2%);
+  font-size: 9px;
 }
 
 .modal .description .size-buttons button {
@@ -100,7 +102,19 @@ button {
   border: 1px lightblue solid;
 }
 
-.modal .description .product-availability {
+.modal .description .availability-section {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  font-size: 10px;
+}
+
+.modal .description .availability-section > * {
+  margin-left: 0;
+}
+
+.modal .description .availability-section .product-availability {
   -ms-flex-pack: justify;
       justify-content: space-between;
   margin: 10px 0;
@@ -110,11 +124,11 @@ button {
       align-items: center;
 }
 
-.modal .description .product-availability > * {
+.modal .description .availability-section .product-availability > * {
   height: 2em;
 }
 
-.modal .description .product-availability .product-availability-icon {
+.modal .description .availability-section .product-availability .product-availability-icon {
   height: 50%;
   position: absolute;
   margin: auto;
@@ -126,28 +140,28 @@ button {
   background-position: center;
 }
 
-.modal .description .product-availability .product-availability-text-wrapper {
+.modal .description .availability-section .product-availability .product-availability-text-wrapper {
   display: table;
 }
 
-.modal .description .product-availability .product-availability-text-wrapper p {
+.modal .description .availability-section .product-availability .product-availability-text-wrapper p {
   margin: 0;
   line-height: 2em;
 }
 
-.modal .description .delivery-information {
+.modal .description .availability-section .delivery-information {
   margin: 10px 0;
 }
 
-.modal .description .delivery-information > * {
+.modal .description .availability-section .delivery-information > * {
   height: 2em;
 }
 
-.modal .description .delivery-information .delivery-icon-wrapper {
+.modal .description .availability-section .delivery-information .delivery-icon-wrapper {
   background: center center;
 }
 
-.modal .description .delivery-information .delivery-icon-wrapper .delivery-icon {
+.modal .description .availability-section .delivery-information .delivery-icon-wrapper .delivery-icon {
   height: 50%;
   top: 0;
   left: 0;
@@ -159,6 +173,11 @@ button {
   right: 0;
   bottom: 0;
   background-position: center;
+}
+
+.modal .description .availability-section .delivery-information .delivery-time-information > * {
+  line-height: 1em;
+  margin: 0;
 }
 
 .modal .description .bottom-section {
@@ -203,11 +222,51 @@ button {
 }
 
 .modal .description .bottom-section .add-to-cart-button-wrapper .add-to-cart-button {
+  width: 93%;
   color: white;
   border: none;
   border-radius: 6px;
   background-color: blue;
   height: 100%;
   padding: calc(0.5vw + 3px) 0;
+}
+
+@media (min-width: 400px) {
+  .modal {
+    width: 80%;
+  }
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 75%;
+    font-size: 1.2em;
+  }
+  .modal .description {
+    padding: 20px 5px;
+  }
+  .modal .description .availability-section {
+    font-size: 0.6em;
+  }
+  .modal .description .size-buttons > * {
+    font-size: 0.7em;
+  }
+  .modal .description .bottom-section .add-to-cart-button-wrapper .add-to-cart-button {
+    font-size: 0.7em;
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal {
+    width: 75%;
+    font-size: 1.4em;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal {
+    width: 60%;
+    font-size: 1.4em;
+  }
 }
 /*# sourceMappingURL=style.css.map */

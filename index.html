@@ -12,10 +12,10 @@
 <body>
   <button class="open-popup">Add to cart</button>
   <div class="modal row container">
-    <div class="gallery col-xs-12 col-md-5">
+    <div class="gallery col-xs-12 col-sm-5">
 
     </div>
-    <div class="container-fluid description col-xs-12 col-md-7">
+    <div class="container-fluid description col-xs-12 col-sm-7">
       <div class="product-header">
         <p>Konsola MICROSOFT XBOX ONE S <br/>500GB + FIFA 19</p>
       </div>
@@ -33,8 +33,8 @@
           </select>
         </div>
       </div>
-      <div class="row">
-        <div class="product-availability row col-xs-12 col-md-5">
+      <div class="row availability-section">
+        <div class="product-availability row col-xs-4 col-sm-4">
           <div class="col-xs-2">
             <!-- <a class="product-availability-icon"></a> -->
             <img alt="oops" class="product-availability-icon"/>
@@ -43,18 +43,22 @@
             <p class="product-availability-text"></p>
           </div>
         </div>
-        <div id="delivery-information" class="delivery-information row col-xs-12 col-md-7">
+        <div id="delivery-information" class="delivery-information row col-xs-8 col-sm-8">
           <div class="col-xs-2 delivery-icon-wrapper"><img alt="oops" class="delivery-icon" src="./images/chronometer.svg"/></div>
+          <div class="col-xs-9 row delivery-time-information">
+            <p>Możemy wysłać już dzisiaj!</p>
+            <a href="#">Sprawdź czasy i koszty wysyłki!</a>
+          </div>
         </div>
       </div>
-      <div class="bottom-section">
-        <div class="col-xs-5 col-md-5 quantity">
-          <a class="btn-quantity col-xs-2" href="#less"><i class="fas fa-minus"></i></a>
+      <div class="bottom-section col-xs-12">
+        <div class="col-xs-4 quantity">
+          <a id="minus" class="btn-quantity col-xs-2" href="#"><i class="fas fa-minus"></i></a>
           <input class="amount col-xs-6" type="text" value="1">
-          <a class="btn-quantity col-xs-2" href="#more"><i class="fas fa-plus"></i></a>
+          <a id="plus" class="btn-quantity col-xs-2" href="#"><i class="fas fa-plus"></i></a>
         </div>
-        <div class="col-xs-7 col-md-7 add-to-cart-button-wrapper">
-          <button class="col-xs-11 add-to-cart-button" type="submit">Dodaj do koszyka</button>
+        <div class="col-xs-8 add-to-cart-button-wrapper">
+          <button class="add-to-cart-button" type="submit">Dodaj do koszyka</button>
         </div>
       </div>
     </div>

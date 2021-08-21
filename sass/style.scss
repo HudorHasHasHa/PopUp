@@ -42,7 +42,7 @@ button{
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 60%;
+  width: 100%;
   transition: 200ms ease-in-out;
   transform: translate(-50%, -50%) scale(0);
   border-radius: 1vh;
@@ -53,12 +53,13 @@ button{
   }
 
   .description{
-    padding: 20px 10px;
+    padding: 20px 3px;
     // .product-header p{
     // }
 
     .product-price{
       .price{
+        transition: 200ms ease-in-out;
         color: blue;
         font-weight: bold;
       }
@@ -71,6 +72,7 @@ button{
       padding-bottom: 1px;
       > * {
         width: calc((100% / 3) - 2%);
+        font-size: 9px;
       }
       button{
         border: 1px solid gray;
@@ -98,57 +100,73 @@ button{
       }
     }
 
-    .product-availability{
-      justify-content: space-between;
-      margin: 10px 0;
+    .availability-section{
       display: flex;
-      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
       > * {
-        height: 2em;
+        
+      margin-left: 0;
       }
-      .product-availability-icon{
-        height: 50%;
-        position: absolute;
-        margin: auto;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: block;
-        background-position: center;
-      }
-      .product-availability-text-wrapper{
-        display: table;
-        p{
-          margin: 0;
-          line-height: 2em;
+      .product-availability{
+        justify-content: space-between;
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        > * {
+          height: 2em;
         }
-        // .product-availability-text{
-        // }
-      }
-    }
-
-    .delivery-information{
-      > * {
-        height: 2em;
-      }
-      margin: 10px 0;
-      
-      .delivery-icon-wrapper{
-        background: center center;
-        .delivery-icon{
+        .product-availability-icon{
           height: 50%;
-          top: 0;
-          left: 0;
-          // height:1vw;
-          display: block;
           position: absolute;
           margin: auto;
           top: 0;
           left: 0;
           right: 0;
           bottom: 0;
+          display: block;
           background-position: center;
+        }
+        .product-availability-text-wrapper{
+          display: table;
+          p{
+            margin: 0;
+            line-height: 2em;
+          }
+          // .product-availability-text{
+          // }
+        }
+      }
+
+      .delivery-information{
+        > * {
+          height: 2em;
+        }
+        margin: 10px 0;
+        
+        .delivery-icon-wrapper{
+          background: center center;
+          .delivery-icon{
+            height: 50%;
+            top: 0;
+            left: 0;
+            // height:1vw;
+            display: block;
+            position: absolute;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-position: center;
+          }
+        }
+
+        .delivery-time-information{
+          > * {
+            line-height: 1em;
+            margin: 0;
+          }
         }
       }
     }
@@ -187,6 +205,7 @@ button{
         justify-content: flex-end;
 
         .add-to-cart-button{
+          width: 93%;
           color: white;
           border: none;
           border-radius: 6px;
@@ -196,5 +215,53 @@ button{
         }
       }
     }
+  }
+}
+
+@media(min-width: 400px){
+  .modal{
+    width: 80%;
+  }
+}
+
+@media(min-width: 768px){
+  .modal{
+    width: 75%;
+    font-size: 1.2em;
+
+    .description{
+      padding: 20px 5px;
+      .availability-section{
+        font-size: 0.6em;
+      }
+
+      .size-buttons{
+        > * {
+          font-size: 0.7em;
+        }
+      }
+
+      .bottom-section{
+        .add-to-cart-button-wrapper{
+          .add-to-cart-button{
+            font-size: 0.7em;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 1024px){
+  .modal{
+    width: 75%;
+    font-size: 1.4em;
+  }
+}
+
+@media(min-width: 1200px){
+  .modal{
+    width: 60%;
+    font-size: 1.4em;
   }
 }

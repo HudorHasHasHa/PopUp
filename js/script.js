@@ -1,4 +1,4 @@
-import { priceChanger, productAvailability } from './utils.js';
+import { priceChanger, productAvailability, quantityButtons } from './utils.js';
 
 // selectors
 const mainButton = document.querySelector(".open-popup");
@@ -39,11 +39,11 @@ overlay.addEventListener('click', function (event) {
   overlay.classList.remove('is-active');
 });
 
-
 // SizeButtonsGenerator & events Start
 (function () {
   // button values
-  let sizes = [], types = [], sizePrices = [], status = [];
+  let sizes = [], types = [], sizePrices = [], status = [], amount = [];
+  let productQuantity = 0;
   // dropdown values
   let dropdownPrices = [], dropdownImage = [], dropdownColors = [];
   const dropdown = xbox.multiversions[0].items;
@@ -51,9 +51,7 @@ overlay.addEventListener('click', function (event) {
   let sizeButtonTemplate = function (type, name) {
     return `<button class="button-type-${type}" id="button-type-${type}">${name}</button>`;
   }
-
-  console.log(xbox.sizes.items)
-
+  console.log(xbox.sizes.items);
   // For Loop for extracting data from json file to declared variables for easier use
   for (const item in xbox.sizes.items) {
     if (xbox.sizes.items[item].hasOwnProperty('name')) {
@@ -67,6 +65,9 @@ overlay.addEventListener('click', function (event) {
     }
     if (xbox.sizes.items[item].hasOwnProperty('status')) {
       status.push(xbox.sizes.items[item].status);
+    }
+    if (xbox.sizes.items[item].hasOwnProperty('amount')) {
+      amount.push(xbox.sizes.items[item].amount);
     }
   }
 
@@ -84,10 +85,6 @@ overlay.addEventListener('click', function (event) {
       dropdownColors.push(dropdown[item].values[key].name);
     }
   }
-  // const dropdownObj = {
-  //   dropdownColors, dropdownPrices, dropdownImage
-  // }
-  // console.log(dropdownObj);
 
   let dropdownSelector = document.getElementById("color-dropdown");
   let selectedValue;
@@ -125,13 +122,17 @@ overlay.addEventListener('click', function (event) {
     // console.log(sizeButtons.classList.contains(".selected"));
     priceChanger(sizePrices[0], selectedDropdownPrice);
     productAvailability(status[0]);
+    productQuantity = parseInt(amount[0]);
     // default options end
     sizeButtons[i].addEventListener("click", function (event) {
       event.preventDefault();
       sizeButtonsCleaner();
       sizeButtons[i].classList.add('selected');
+      productQuantity = parseInt(amount[i]);
       priceChanger(sizePrices[i], parseFloat(selectedDropdownPrice));
       productAvailability(status[i]);
+      const dispatch = new Event("change");
+      amountInput.dispatchEvent(dispatch);
     });
     // dropdownSelector on change running priceChanger
     dropdownSelector.addEventListener('change', function(){
@@ -140,6 +141,23 @@ overlay.addEventListener('click', function (event) {
       }
     });
   }
+
+  let amountInput = document.querySelector('.amount');
+  amountInput.addEventListener('change', function(){
+    if(productQuantity < amountInput.value){
+      window.alert(`przepraszamy, ale wybrany przez Ciebie przedmiot posiadamy jedynie w ilości: ${productQuantity}`);
+      amountInput.value = productQuantity;
+    }
+    if(amountInput.value <= 0){
+      amountInput.value = 0;
+      console.log(amountInput.value)
+    }
+    if(isNaN(amountInput.value)){
+      amountInput.value = 0;
+    }
+  });
+
+  quantityButtons();
 })();
 // SizeButtonsGenerator & events Ends
 

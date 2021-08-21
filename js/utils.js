@@ -25,3 +25,24 @@ export const productAvailability = (status) => {
   statusImg.src="./images/close.svg"
   }
 };
+
+export const quantityButtons = () => {
+  let plus = document.getElementById("plus");
+  let minus = document.getElementById("minus");
+  let input = document.querySelector(".amount");
+  const event = new Event("change");
+
+  plus.addEventListener("click", function(e){
+    let amount = 0;
+    amount = parseInt(document.querySelector(".amount").value);
+    document.querySelector(".amount").value = amount + 1;
+    input.dispatchEvent(event);
+  });
+  
+  minus.addEventListener("click", function(e){
+    let amount = 0;
+    amount = parseInt(document.querySelector(".amount").value);
+    document.querySelector(".amount").value = amount - 1;
+    input.dispatchEvent(event);
+  });
+};
