@@ -316,13 +316,27 @@ button{
 @media(min-width: 1024px){
   .modal{
     width: 75%;
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 }
 
 @media(min-width: 1200px){
   .modal{
     width: 60%;
-    font-size: 1.4em;
+    font-size: 1.3em;
+  }
+}
+
+@media(min-width: 1600px){
+  .modal{
+    width: 60%;
+    font-size: 1.3em;
+  }
+}
+
+@media(min-width: 2200px){
+  .modal{
+    width: 60%;
+    font-size: 1.8em;
   }
 }
