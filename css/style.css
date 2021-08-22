@@ -126,7 +126,7 @@ button {
 }
 
 .modal .description {
-  padding: 20px 3px;
+  padding: 10px 3px;
 }
 
 .modal .description .product-price .price {
@@ -305,16 +305,22 @@ button {
   }
 }
 
+@media (min-width: 570px) {
+  .modal {
+    width: 60%;
+  }
+}
+
 @media (min-width: 768px) {
   .modal {
     width: 75%;
     font-size: 1.2em;
   }
   .modal .description {
-    padding: 20px 5px;
+    padding: 20px 10px;
   }
   .modal .description .availability-section {
-    font-size: 0.6em;
+    font-size: 0.65em;
   }
   .modal .description .size-buttons > * {
     font-size: 0.7em;
@@ -326,14 +332,17 @@ button {
 
 @media (min-width: 1024px) {
   .modal {
-    width: 75%;
+    width: 67%;
     font-size: 1.2em;
+  }
+  .modal .description .availability-section {
+    font-size: 0.7em;
   }
 }
 
 @media (min-width: 1200px) {
   .modal {
-    width: 60%;
+    width: 55%;
     font-size: 1.3em;
   }
 }
