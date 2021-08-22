@@ -37,7 +37,6 @@ button{
 }
 
 .modal {
-  height: 50vh;
   font-size: 13px;
   background: white;
   position: fixed;
@@ -64,7 +63,7 @@ button{
       vertical-align: middle;
       .gallery-image {
         height: 50%;
-        width: 100%;
+        width: 80%;
         background: center center no-repeat;
         background-size: contain;
         position: absolute;
@@ -89,7 +88,7 @@ button{
       overflow: hidden;
 
      > div{
-      color: red;
+      color: #000;
       cursor: pointer;
       transition: 0.3s ease-in-out;
     }

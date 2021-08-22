@@ -51,7 +51,6 @@ overlay.addEventListener('click', function (event) {
   let sizeButtonTemplate = function (type, name) {
     return `<button class="button-type-${type}" id="button-type-${type}">${name}</button>`;
   }
-  console.log(xbox.sizes.items);
   // For Loop for extracting data from json file to declared variables for easier use
   for (const item in xbox.sizes.items) {
     if (xbox.sizes.items[item].hasOwnProperty('name')) {
@@ -73,7 +72,6 @@ overlay.addEventListener('click', function (event) {
 
   // DROPDOWN PRICE PART STARTS
   for (const item in dropdown) {
-    console.log(dropdown[item]);
     // statements to get dropdown options variables including priceDiff & img url//
     if (dropdown[item].products[0].hasOwnProperty('price_difference')) {
       dropdownPrices.push(dropdown[item].products[0].price_difference);
@@ -90,7 +88,6 @@ overlay.addEventListener('click', function (event) {
   let galleryImagesSelector = document.querySelector(".gallery-images");
   let selectedValue;
   let selectedDropdownPrice = 0;
-  console.log(selectedValue);
 
   // Generating gallery images depending on which option from dropdown is selected.
   let html = '';
@@ -102,13 +99,10 @@ overlay.addEventListener('click', function (event) {
       html = ''
     }
     selectedValue = document.querySelector(".color-dropdown").value;
-    console.log(selectedValue);
     for (let i = 0; i < dropdownColors.length; i++) {
       if (dropdownColors[i] == selectedValue) {
-        console.log(dropdownPrices[i]);
         selectedDropdownPrice = parseFloat(dropdownPrices[i]);
-        console.log(dropdownImage[i]);
-        for(let x=0; x<dropdownImage[i].length; x++){
+        for (let x = 0; x < dropdownImage[i].length; x++) {
           html += imageTemplate(x);
         }
         // GALLERY INJECTING DEPENDING ON WHICH OPTIONS IS CHOSEN
@@ -120,11 +114,9 @@ overlay.addEventListener('click', function (event) {
     }
     let currentImages = document.getElementsByClassName("gallery-image")
     // setting div-bckground 
-    for(let i = 0; i<currentImages.length; i++){
-      for(let x = 0; x<dropdownImage[i].length; x++){
-        console.log(dropdownImage[i][x]);
-        console.log(currentImages[i]);
-        document.getElementById("img"+x).setAttribute("style", `background-image: url(${dropdownImage[i][x]}); background-repeat: no-repeat`);
+    for (let i = 0; i < currentImages.length; i++) {
+      for (let x = 0; x < dropdownImage[i].length; x++) {
+        document.getElementById("img" + x).setAttribute("style", `background-image: url(${dropdownImage[i][x]}); background-repeat: no-repeat`);
       }
     }
   });
@@ -133,29 +125,29 @@ overlay.addEventListener('click', function (event) {
   // // NEXT IMAGE 
   let nextImg = document.querySelector(".next-btn");
   let prevImg = document.querySelector(".previous-btn");
-  nextImg.addEventListener("click", function(event){
+  nextImg.addEventListener("click", function (event) {
     event.preventDefault();
     let generatedImages = document.getElementsByClassName("gallery-image");
     for (let i = 0; i < generatedImages.length; i++) {
-      if(generatedImages[i].classList.contains("currentImage")){
+      if (generatedImages[i].classList.contains("currentImage")) {
         generatedImages[i].classList.remove("currentImage");
-        if(i < generatedImages.length-1){
+        if (i < generatedImages.length - 1) {
           generatedImages[++i].classList.add("currentImage");
-        } else if(i >= generatedImages.length-1){
+        } else if (i >= generatedImages.length - 1) {
           generatedImages[i].classList.add("currentImage");
         }
       }
     }
   });
-  prevImg.addEventListener("click", function(event){
+  prevImg.addEventListener("click", function (event) {
     event.preventDefault();
     let generatedImages = document.getElementsByClassName("gallery-image");
     for (let i = 0; i < generatedImages.length; i++) {
-      if(generatedImages[i].classList.contains("currentImage")){
+      if (generatedImages[i].classList.contains("currentImage")) {
         generatedImages[i].classList.remove("currentImage");
-        if(i <= 0){
+        if (i <= 0) {
           generatedImages[i].classList.add("currentImage");
-        } else if(i >= 1){
+        } else if (i >= 1) {
           generatedImages[--i].classList.add("currentImage");
         }
       }
@@ -181,7 +173,6 @@ overlay.addEventListener('click', function (event) {
     // By default first option's checked // default options start
     sizeButtons[0].classList.add('selected');
 
-    // console.log(sizeButtons.classList.contains(".selected"));
     priceChanger(sizePrices[0], selectedDropdownPrice);
     productAvailability(status[0]);
     productQuantity = parseInt(amount[0]);
@@ -211,10 +202,9 @@ overlay.addEventListener('click', function (event) {
       amountInput.value = productQuantity;
     } else if (amountInput.value <= 0) {
       amountInput.value = 1;
-      console.log(amountInput.value)
     } else if (isNaN(amountInput.value)) {
       amountInput.value = 1;
-    } if (productQuantity <= 0){
+    } if (productQuantity <= 0) {
       window.alert(`przepraszamy, ale wybrany przez Ciebie przedmiot jest w tym momencie niedostępny, spróbuj ponownie później`);
       amountInput.value = 1;
       const dispatch = new Event("click");
@@ -228,7 +218,6 @@ overlay.addEventListener('click', function (event) {
 // SizeButtonsGenerator & events Ends
 
 // variant Dropdown selector Generator & events Start
-console.log(price);
 (function () {
   let dropdownColors = [];
   let variantHtml = '';
@@ -243,7 +232,6 @@ console.log(price);
       dropdownColors.push(items[item].values[key].name);
     }
   }
-  // console.log(dropdownColors)
 
   //Creating html from declared template by looping through 
   for (let i = 0; i < dropdownColors.length; i++) {
@@ -264,3 +252,58 @@ console.log(price);
     console.log('dostępny');
   }
 })();
+
+
+const dispatchDefault = new Event("change");
+document.getElementById("color-dropdown").dispatchEvent(dispatchDefault);
+
+let submitButton = document.querySelector(".add-to-cart-button");
+
+submitButton.addEventListener('click', function () {
+  // Get selected size
+  let sizes = document.querySelectorAll("[class*=button-type]");
+  let size;
+  for (let i = 0; i < sizes.length; i++) {
+    if (sizes[i].classList.contains("selected")) {
+      size = parseInt((sizes[i].innerHTML).replace(/\D/g, ''));
+    }
+  }
+  console.log(size);
+  // Get selected color
+  let colors = document.querySelector(".color-dropdown");
+  let color = colors.value;
+
+  // Get quantity
+  let quantity = document.querySelector(".amount").value;
+
+  // Get piece price 
+  let piecePrice = parseFloat(((document.querySelector(".price")).innerHTML).replace(/\D/g, ''));
+
+  let data = {
+    "size": size,
+    "color": color,
+    "quantity": quantity,
+    "piecePrice": piecePrice,
+    "totalPrice": (quantity*piecePrice)
+  }
+  console.log(data);
+  // submitToServer(data)
+  // .then(data => console.log(data));
+})
+
+async function submitToServer(data) {
+
+  try {
+    let response = await fetch("url", {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    let responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
+}
