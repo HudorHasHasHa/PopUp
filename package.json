@@ -32,6 +32,7 @@
     "devDependencies": {
         "autoprefixer-cli": "^1.0.0",
         "axios": "^0.21.1",
+        "boxicons": "^2.0.9",
         "browser-sync": "^2.26.3",
         "copyfiles": "^2.1.0",
         "eslint": "^5.14.1",

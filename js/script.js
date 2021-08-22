@@ -87,19 +87,81 @@ overlay.addEventListener('click', function (event) {
   }
 
   let dropdownSelector = document.getElementById("color-dropdown");
+  let galleryImagesSelector = document.querySelector(".gallery-images");
   let selectedValue;
   let selectedDropdownPrice = 0;
+  console.log(selectedValue);
+
+  // Generating gallery images depending on which option from dropdown is selected.
+  let html = '';
+  const imageTemplate = (imageId) => {
+    return `<div class="gallery-image" id="img${imageId}"></div>`;
+  }
   dropdownSelector.addEventListener('change', function () {
+    if (typeof html !== 'undefined') {
+      html = ''
+    }
     selectedValue = document.querySelector(".color-dropdown").value;
     console.log(selectedValue);
     for (let i = 0; i < dropdownColors.length; i++) {
       if (dropdownColors[i] == selectedValue) {
         console.log(dropdownPrices[i]);
         selectedDropdownPrice = parseFloat(dropdownPrices[i]);
+        console.log(dropdownImage[i]);
+        for(let x=0; x<dropdownImage[i].length; x++){
+          html += imageTemplate(x);
+        }
+        // GALLERY INJECTING DEPENDING ON WHICH OPTIONS IS CHOSEN
+        galleryImagesSelector.innerHTML = '';
+        galleryImagesSelector.insertAdjacentHTML("beforeend", html);
+
+        document.getElementById("img0").classList.add("currentImage");
+      }
+    }
+    let currentImages = document.getElementsByClassName("gallery-image")
+    // setting div-bckground 
+    for(let i = 0; i<currentImages.length; i++){
+      for(let x = 0; x<dropdownImage[i].length; x++){
+        console.log(dropdownImage[i][x]);
+        console.log(currentImages[i]);
+        document.getElementById("img"+x).setAttribute("style", `background-image: url(${dropdownImage[i][x]}); background-repeat: no-repeat`);
       }
     }
   });
   // DROPDOWN PRICE PART ENDS
+
+  // // NEXT IMAGE 
+  let nextImg = document.querySelector(".next-btn");
+  let prevImg = document.querySelector(".previous-btn");
+  nextImg.addEventListener("click", function(event){
+    event.preventDefault();
+    let generatedImages = document.getElementsByClassName("gallery-image");
+    for (let i = 0; i < generatedImages.length; i++) {
+      if(generatedImages[i].classList.contains("currentImage")){
+        generatedImages[i].classList.remove("currentImage");
+        if(i < generatedImages.length-1){
+          generatedImages[++i].classList.add("currentImage");
+        } else if(i >= generatedImages.length-1){
+          generatedImages[i].classList.add("currentImage");
+        }
+      }
+    }
+  });
+  prevImg.addEventListener("click", function(event){
+    event.preventDefault();
+    let generatedImages = document.getElementsByClassName("gallery-image");
+    for (let i = 0; i < generatedImages.length; i++) {
+      if(generatedImages[i].classList.contains("currentImage")){
+        generatedImages[i].classList.remove("currentImage");
+        if(i <= 0){
+          generatedImages[i].classList.add("currentImage");
+        } else if(i >= 1){
+          generatedImages[--i].classList.add("currentImage");
+        }
+      }
+    }
+  })
+
   let buttonsHTML = '';
   for (let i = 0; i < sizes.length; i++) {
     buttonsHTML = buttonsHTML + sizeButtonTemplate(types[i], sizes[i]);
@@ -118,7 +180,7 @@ overlay.addEventListener('click', function (event) {
   for (let i = 0; i < sizeButtons.length; i++) {
     // By default first option's checked // default options start
     sizeButtons[0].classList.add('selected');
-    
+
     // console.log(sizeButtons.classList.contains(".selected"));
     priceChanger(sizePrices[0], selectedDropdownPrice);
     productAvailability(status[0]);
@@ -135,26 +197,30 @@ overlay.addEventListener('click', function (event) {
       amountInput.dispatchEvent(dispatch);
     });
     // dropdownSelector on change running priceChanger
-    dropdownSelector.addEventListener('change', function(){
-      if(sizeButtons[i].classList.contains("selected")){
-      priceChanger(sizePrices[i], parseFloat(selectedDropdownPrice));
+    dropdownSelector.addEventListener('change', function () {
+      if (sizeButtons[i].classList.contains("selected")) {
+        priceChanger(sizePrices[i], parseFloat(selectedDropdownPrice));
       }
     });
   }
 
   let amountInput = document.querySelector('.amount');
-  amountInput.addEventListener('change', function(){
-    if(productQuantity < amountInput.value){
+  amountInput.addEventListener('change', function () {
+    if (productQuantity < amountInput.value && productQuantity >= 1) {
       window.alert(`przepraszamy, ale wybrany przez Ciebie przedmiot posiadamy jedynie w ilości: ${productQuantity}`);
       amountInput.value = productQuantity;
-    }
-    if(amountInput.value <= 0){
-      amountInput.value = 0;
+    } else if (amountInput.value <= 0) {
+      amountInput.value = 1;
       console.log(amountInput.value)
+    } else if (isNaN(amountInput.value)) {
+      amountInput.value = 1;
+    } if (productQuantity <= 0){
+      window.alert(`przepraszamy, ale wybrany przez Ciebie przedmiot jest w tym momencie niedostępny, spróbuj ponownie później`);
+      amountInput.value = 1;
+      const dispatch = new Event("click");
+      sizeButtons[0].dispatchEvent(dispatch);
     }
-    if(isNaN(amountInput.value)){
-      amountInput.value = 0;
-    }
+
   });
 
   quantityButtons();
@@ -166,8 +232,8 @@ console.log(price);
 (function () {
   let dropdownColors = [];
   let variantHtml = '';
-  let variantTemplate = function (color) {
-    return `<option value="${color}">${color}</option>`;
+  let variantTemplate = function (color, optionId) {
+    return `<option id="optionId-${optionId}" value="${color}">${color}</option>`;
   }
   const items = xbox.multiversions[0].items;
 
@@ -181,19 +247,20 @@ console.log(price);
 
   //Creating html from declared template by looping through 
   for (let i = 0; i < dropdownColors.length; i++) {
-    variantHtml = variantHtml + variantTemplate(dropdownColors[i]);
+    variantHtml = variantHtml + variantTemplate(dropdownColors[i], i);
   }
 
   document.querySelector(".color-dropdown").insertAdjacentHTML('beforeend', variantHtml);
+  // document.getElementById("optionId-0").setAttribute = (selected, selected);
 })();
 // variant Dropdown selector Generator & events Ends
 
 // Delivery information
-(function(){
+(function () {
   const isAvailable = document.querySelector(".product-availability-text");
   console.log(isAvailable.innerHTML);
 
-  if(isAvailable.innerHTML === "Produkt dostępny"){
+  if (isAvailable.innerHTML === "Produkt dostępny") {
     console.log('dostępny');
   }
 })();
