@@ -287,23 +287,23 @@ submitButton.addEventListener('click', function () {
     "totalPrice": (quantity*piecePrice)
   }
   console.log(data);
-  // submitToServer(data)
+  // submitToServer(url, data)
   // .then(data => console.log(data));
 })
 
-async function submitToServer(data) {
+// async function submitToServer(url, data) {
 
-  try {
-    let response = await fetch("url", {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    let responseJson = await response.json();
-    return responseJson;
-  } catch (error) {
-    console.error(error);
-  }
-}
+//   try {
+//     let response = await fetch(url, {
+//       method: 'POST',
+//       headers: {
+//         'Content-type': 'application/json',
+//       },
+//       body: JSON.stringify(data),
+//     });
+//     let responseJson = await response.json();
+//     return responseJson;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
