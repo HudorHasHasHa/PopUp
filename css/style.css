@@ -167,11 +167,7 @@ button {
       justify-content: space-around;
   width: 100%;
   padding: 3px 5px;
-}
-
-.modal .description .color-dropdown-wrapper .color-dropdown:hover {
   background-color: white;
-  border: 1px lightblue solid;
 }
 
 .modal .description .availability-section {
