@@ -34,7 +34,6 @@ export const quantityButtons = () => {
     amount = parseInt(document.getElementById("amount").value);
     document.getElementById("amount").value = amount + 1;
     document.getElementById("amount").dispatchEvent(event);
-    console.log(amount);
   });
   
   minus.addEventListener("click", function(e){

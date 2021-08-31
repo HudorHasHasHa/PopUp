@@ -6,23 +6,21 @@ const modal = document.querySelector(".modal");
 const close = document.getElementById("close");
 const amountInput = document.getElementById('amount');
 // Reading json file content START
-const response = await axios.get("../xbox.json")
-  .catch(error => {
-    console.log(error);
-  });
+// const response = await axios.get("../xbox.json")
+//   .catch(error => {
+//     console.log(error);
+//   });
 
 // Setting const variable content as json file response data
-const xbox = response.data;
+// const xbox = response.data;
 
 // Alternatively load data using fetch instead of axios package
-/*
 let xbox;
 await fetch("../xbox.json")
 .then(response => response.json())
 .then(data => {
   return xbox = data;
 })
-*/
 // Reading json file content ENDS
 
 mainButton.addEventListener('click', function (event) {
