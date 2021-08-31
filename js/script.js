@@ -3,7 +3,7 @@ import { priceChanger, productAvailability, quantityButtons } from './utils.js';
 const mainButton = document.querySelector(".open-popup");
 const overlay = document.querySelector(".overlay");
 const modal = document.querySelector(".modal");
-const close = document.getElementById("close");
+const close = document.getElementsByClassName("close-button");
 const amountInput = document.getElementById('amount');
 // Reading json file content START
 // const response = await axios.get("../xbox.json")
@@ -253,7 +253,6 @@ let sizeButtonsGenerator;
 (function () {
   let productQuantity = 0;
   const sizeButtons = document.getElementsByClassName("size-button");
-
   quantityButtons();
   amountInput.addEventListener('change', function () {
     for (let i = 0; i < sizeButtons.length; i++) {
@@ -263,6 +262,8 @@ let sizeButtonsGenerator;
             productQuantity = xbox.sizes.items[item].amount;
           }
         }
+      }else if(i===3){
+        amountInput = 0;
       }
     }
     if (productQuantity < amountInput.value && productQuantity >= 1) {
@@ -387,8 +388,10 @@ submitButton.addEventListener('click', function () {
 //   }
 // }
 
-close.addEventListener('click', function (event) {
-  event.preventDefault();
-  modal.classList.remove('is-active');
-  overlay.classList.remove('is-active');
-});
+for(let i = 0 ; i< close.length ; i++){
+  close[i].addEventListener('click', function (event) {
+    event.preventDefault();
+    modal.classList.remove('is-active');
+    overlay.classList.remove('is-active');
+  });
+}
