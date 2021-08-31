@@ -11,8 +11,13 @@
 }
 
 .row{
+  display: flex;
   padding: 0;
   margin-left: 0;
+
+  &.delivery-time-information{
+    display: block;
+  }
 }
 
 button{
@@ -54,27 +59,17 @@ button{
   }
 
   .gallery{
-    height: 100%;
     position: relative;
     display: flex;
     overflow: hidden;
     .gallery-images{
-      display: table-cell;
-      height: 50vh;
-      vertical-align: middle;
-      .gallery-image {
-        height: 50%;
-        width: 80%;
-        background: center center no-repeat;
-        background-size: contain;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        transition: 0.3s cubic-bezier(.79,.03,0,.99);
-        opacity:0;
-        &.currentImage{
-          opacity:1;
+      .gallery{
+        .gallery-images{
+          display: flex;
+          justify-content: center;
+          .gallery-image {
+            display: none;
+          }
         }
       }
     }
@@ -119,8 +114,18 @@ button{
 
   .description{
     padding: 10px 3px;
-    // .product-header p{
-    // }
+    .product-header{
+      display: flex;
+      justify-content: space-between;
+      :nth-child(2){
+        display: flex;
+        :first-child{
+          font-size: 1.5em;
+          height: 1em;
+          cursor: pointer;
+        }
+      }
+    }
 
     .product-price{
       .price{
@@ -280,21 +285,105 @@ button{
   }
 }
 
-@media(min-width: 400px){
+@media(min-width: 0px){
+  .row{
+    display: block;
+  }
+
   .modal{
+    .gallery{
+      display: flex;
+      justify-content: center;
+      .gallery-mobile-images{
+        > * {
+          padding: 15px 0;
+          width:  200px;
+          height: 150px;
+          display: none;
+          &.currentImage{
+            display: block;
+          }
+        }
+      } 
+    }
+  }
+}
+
+@media(min-width: 266px){
+  .row{
+    display: block;
+  }
+}
+
+@media(min-width: 320px){
+  .modal {
+    width: 90%;
+  }
+}
+
+@media(min-width: 400px){
+  .row{
+    display: block;
+  }
+
+  .modal {
     width: 80%;
   }
 }
 
-@media(min-width: 570px){
+@media(min-width: 500px){
   .modal{
     width: 60%;
   }
 }
 
+@media(min-width: 600px){
+  .modal{
+    width: 50%;
+  }
+}
+
+
+@media(min-width: 768px){
+  .row{
+    display: flex;
+  }
+
+  .modal {
+    height: auto;
+
+    .gallery{
+      height: auto;
+      .gallery-images{
+        display: table-cell;
+        vertical-align: middle;
+        height: 100%;
+        .gallery-image {
+          height: 50%;
+          width: 80%;
+          background: center center no-repeat;
+          background-size: contain;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          transition: 0.3s cubic-bezier(.79,.03,0,.99);
+          opacity:0;
+          &.currentImage{
+            opacity:1;
+          }
+        }
+      }
+      .gallery-mobile-images{
+        display: none;
+      }
+    }
+  }
+}
+
 @media(min-width: 768px){
   .modal{
-    width: 75%;
+    width: 70%;
     font-size: 1.2em;
 
     .description{
@@ -350,3 +439,74 @@ button{
     font-size: 1.8em;
   }
 }
+
+// STYLES FOR MODAL WHEN col-XS IS SET IN SAME PROPORTION AS col-SM
+// @media(min-width: 0px){
+//   .modal .description .bottom-section .quantity .btn-quantity{
+//     line-height: 40px;
+//   }
+
+//   .row{
+//     display: flex;
+//   }
+//   .modal {
+//     height: auto;
+//     .gallery{
+//       .gallery-images{
+//       }
+//     }
+//   }
+// }
+
+// @media(min-width: 266px){
+
+//   .row{
+//     display: flex;
+//   }
+//   .modal {
+//     height: auto;
+//     .gallery{
+//       .gallery-images{
+//       }
+//     }
+//   }
+// }
+
+// @media(min-width: 400px){
+
+//   .row{
+//     display: flex;
+//   }
+//   .modal {
+//     height: auto;
+//     width: 80%;
+//   }
+// }
+
+// @media(min-width: 570px){
+//   .row{
+//     display: flex;
+//   }
+//   .modal{
+//     height: auto;
+//     width: 60%;
+//   }
+// }
+
+
+// @media(min-width: 768px){
+//   .row{
+//     display: flex;
+//   }
+
+//   .modal {
+//     height: auto;
+//     .gallery{
+//       height: auto;
+//       .gallery-images{
+        
+//       height: 100%;
+//       }
+//     }
+//   }
+// }
