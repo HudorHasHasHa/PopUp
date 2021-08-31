@@ -291,6 +291,15 @@ button{
   }
 
   .modal{
+    .close-mobile{
+      display: flex;
+      justify-content: flex-end;
+      :first-child{
+        font-size: 1.5em;
+        margin: 3px 5px 0 0;
+      }
+    }
+
     .gallery{
       display: flex;
       justify-content: center;
@@ -305,6 +314,20 @@ button{
           }
         }
       } 
+    }
+
+    .description{
+      padding: 10px 3px;
+      .product-header{
+        display: flex;
+        justify-content: space-between;
+        :nth-child(2){
+          display: flex;
+          :first-child{
+            display: none;
+          }
+        }
+      }
     }
   }
 }
@@ -351,6 +374,9 @@ button{
 
   .modal {
     height: auto;
+    .close-mobile{
+      display: none;
+    }
 
     .gallery{
       height: auto;
@@ -388,6 +414,14 @@ button{
 
     .description{
       padding: 20px 10px;
+      
+      .product-header{
+        :nth-child(2){
+          :first-child{
+            display: block;
+          }
+        }
+      }
       .availability-section{
         font-size: 0.65em;
       }

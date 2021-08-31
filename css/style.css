@@ -315,6 +315,16 @@ button {
   .row {
     display: block;
   }
+  .modal .close-mobile {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: end;
+        justify-content: flex-end;
+  }
+  .modal .close-mobile :first-child {
+    font-size: 1.5em;
+    margin: 3px 5px 0 0;
+  }
   .modal .gallery {
     display: -ms-flexbox;
     display: flex;
@@ -329,6 +339,22 @@ button {
   }
   .modal .gallery .gallery-mobile-images > *.currentImage {
     display: block;
+  }
+  .modal .description {
+    padding: 10px 3px;
+  }
+  .modal .description .product-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+  }
+  .modal .description .product-header :nth-child(2) {
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .modal .description .product-header :nth-child(2) :first-child {
+    display: none;
   }
 }
 
@@ -373,6 +399,9 @@ button {
   .modal {
     height: auto;
   }
+  .modal .close-mobile {
+    display: none;
+  }
   .modal .gallery {
     height: auto;
   }
@@ -408,6 +437,9 @@ button {
   }
   .modal .description {
     padding: 20px 10px;
+  }
+  .modal .description .product-header :nth-child(2) :first-child {
+    display: block;
   }
   .modal .description .availability-section {
     font-size: 0.65em;
