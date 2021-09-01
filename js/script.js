@@ -148,15 +148,17 @@ let sizeButtonsGenerator;
           generatedImages[i].classList.add("currentImage");
         }
       }
-      if (currentMobileImages[i].classList.contains("currentImage")) {
-        currentMobileImages[i].classList.remove("currentImage");
-        if (i < currentMobileImages.length - 1) {
-          currentMobileImages[++i].classList.add("currentImage");
-        } else if (i >= currentMobileImages.length - 1) {
-          currentMobileImages[i].classList.add("currentImage");
-        }
+    }
+    for (let i = 0; i < generatedImages.length; i++) {
+    if (currentMobileImages[i].classList.contains("currentImage")) {
+      currentMobileImages[i].classList.remove("currentImage");
+      if (i < currentMobileImages.length - 1) {
+        currentMobileImages[++i].classList.add("currentImage");
+      } else if (i >= currentMobileImages.length - 1) {
+        currentMobileImages[i].classList.add("currentImage");
       }
     }
+  }
   });
   prevImg.addEventListener("click", function (event) {
     event.preventDefault();
@@ -171,6 +173,9 @@ let sizeButtonsGenerator;
           generatedImages[--i].classList.add("currentImage");
         }
       }
+    }
+
+    for (let i = 0; i < generatedImages.length; i++) {
       if (currentMobileImages[i].classList.contains("currentImage")) {
         currentMobileImages[i].classList.remove("currentImage");
         if (i <= 0) {
@@ -243,7 +248,7 @@ let sizeButtonsGenerator;
     }
     if (buttonsCounter == sizeButtons.length) {
       productAvailability("Produkt niedostępny");
-      amountInput.value = 0;
+      amountInput.value = 1;
     }
   }
 })();
@@ -363,7 +368,7 @@ submitButton.addEventListener('click', function () {
       break;
     }
     else {
-      amountInput.value = 0;
+      amountInput.value = 1;
       alert("przepraszamy produkt jest niedostępny");
       break;
     }
