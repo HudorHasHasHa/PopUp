@@ -1,6 +1,3 @@
-1. Plik quickstart.xd crashował mi  Adobe, miałem do dyspozycji widok główny strony dzięki otwarciu pliku przez viewer online.
-2. Improwizowałem też z wyglądem pop-upu w wersji mobilnej, ułożyłem dwie sekcje na sobie.
-3. Zdjęcia do projektu pobrałem z internetu.
 - Co do działania:
 - Używając komend npm install,  npm run watch 
 - Po kliknięciu w przycisk wyskakuje pop-up otoczony overlayem.
