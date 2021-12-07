@@ -1,5 +1,5 @@
-- Co do działania:
-- Używając komend npm install,  npm run watch 
+ https://hudorhashasha.github.io/PopUp/
+
 - Po kliknięciu w przycisk wyskakuje pop-up otoczony overlayem.
 1. Kliknięcie na overlay/'x' zamyka pop-up
 2. Widoczna w oknie cena za sztukę produktu zależy od wybranego rozmiaru pamięci RAM oraz wariantu kolorystycznego.
