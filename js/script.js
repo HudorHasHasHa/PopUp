@@ -6,7 +6,7 @@ const modal = document.querySelector(".modal");
 const close = document.getElementsByClassName("close-button");
 const amountInput = document.getElementById('amount');
 // Reading json file content START
-// const response = await axios.get("../xbox.json")
+// const response = await axios.get("https://raw.githubusercontent.com/HudorHasHasHa/PopUp/master/xbox.json")
 //   .catch(error => {
 //     console.log(error);
 //   });
@@ -16,7 +16,7 @@ const amountInput = document.getElementById('amount');
 
 // Alternatively load data using fetch instead of axios package
 let xbox;
-await fetch("../xbox.json")
+await fetch("https://raw.githubusercontent.com/HudorHasHasHa/PopUp/master/xbox.json")
 .then(response => response.json())
 .then(data => {
   return xbox = data;
